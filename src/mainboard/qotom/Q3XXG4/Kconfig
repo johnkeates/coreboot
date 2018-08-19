@@ -1,0 +1,70 @@
+config BOARD_QOTOM_BASEBOARD_Q3XXG4
+	def_bool n
+	select SYSTEM_TYPE_DESKTOP
+	select BOARD_ROMSIZE_KB_8192
+	select HAVE_ACPI_RESUME
+	select HAVE_ACPI_TABLES
+	select INTEL_INT15
+	select SOC_INTEL_BROADWELL
+
+if BOARD_QOTOM_BASEBOARD_Q3XXG4
+
+config VARIANT_DIR
+	string
+	default "q3xxg4" if BOARD_QOTOM_Q3XXG4
+
+config DEVICETREE
+	string
+	default "variants/q3xxg4/devicetree.cb" if BOARD_QOTOM_Q3XXG4
+
+config DRIVERS_UART_8250IO
+	def_bool y
+	help
+	  This platform has one external and one internal serial port.
+
+config PCIEXP_L1_SUB_STATE
+	def_bool n
+
+config PCIEXP_AER
+	def_bool n
+
+config MAINBOARD_DIR
+	string
+	default qotom/Q3XXG4
+
+config MAINBOARD_VENDOR
+	string
+	default "Qotom"
+
+config MAINBOARD_PART_NUMBER
+	string
+	default "Q3XXG4" if BOARD_QOTOM_Q3XXG4
+
+config MAINBOARD_FAMILY
+	string
+	default "Qotom Q3xxG4" if BOARD_QOTOM_Q3XXG4
+
+config MAINBOARD_VERSION
+	string
+	default "1.0" if BOARD_QOTOM_Q3XXG4
+
+config MAX_CPUS
+	int
+	default 8
+
+config NO_POST
+	def_bool y
+	help
+	  This platform does not have any way to see POST codes
+	  so disable them by default.
+
+config PRE_GRAPHICS_DELAY
+	int
+	default 50
+
+config VGA_BIOS_ID
+	string
+	default "8086,1626" if BOARD_QOTOM_Q3XXG4
+
+
+endif
